@@ -12,20 +12,24 @@ class LeBonCoinService {
       .get(this.callSearch.bind(this))
     ;
 
-    this.initSearch();
+    app.route('/api/old-car')
+      .get(this.callSearchOldCar.bind(this))
+    ;
 }
 
-  initSearch() {
-    //TODO uncomment later
-    //this.searchOldCar().run().then(data => {
-    //  data.$loki = 1;
-    //  this.db.insert(this.db.collections.cars, data);
-    //});
+  callSearch(req, res) {
+    this.searchCustom(req.params).then(data => res.send(data))
+      .catch(err => console.error(err));
+  }
+
+  callSearchOldCar(req, res) {
+    this.searchOldCar().then(data => res.send(data))
+      .catch(err => console.error(err));
   }
 
   searchOldCar() {
     const search = new leboncoin.Search();
-    return search
+    search
       .setPage(1)
       .setLimit(10)
       .setQuery("Peugeot 307")
@@ -33,11 +37,10 @@ class LeBonCoinService {
       .setCategory("voitures")
       .addSearchExtra("price", {max: 3000})
       .addSearchExtra("ranges", {mileage: {min:100000}});
-  }
-
-  callSearch(req, res) {
-    this.searchCustom(req.params).then(data => res.send(data))
-      .catch(err => console.error(err));
+    return search.run().then(data => {
+      this.save(data);
+      return data;
+    });
   }
 
   searchCustom({minPrice=0, maxPrice=100000, codePostal, minKm=0, maxKm=500000, searchText}) {

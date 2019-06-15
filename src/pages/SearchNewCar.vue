@@ -1,6 +1,13 @@
 <template>
   <q-page>
 
+    <q-card v-if="etape=='init'" bordered >
+      <q-card-actions align="between">
+        <q-btn flat @click="sameCar()">Je veux la même voiture</q-btn>
+        <q-btn flat @click="goTo('recherche')">Je veux changer de modèle</q-btn>
+      </q-card-actions>
+    </q-card>
+
     <q-card v-if="etape=='recherche'" bordered >
       <q-card-section>
         <div class="text-h6">
@@ -93,6 +100,7 @@
       <q-separator inset />
 
       <q-card-actions align="between">
+        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" v-on:click="goTo('resultats')">Rechercher</q-btn>
       </q-card-actions>
 
@@ -111,17 +119,15 @@
     <q-separator inset />
     <q-card-section>
 
-      TODO recherches
+      {{oldCarsResults}}
 
     </q-card-section>
     <q-separator inset />
 
     <q-card-actions align="between">
-      <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
-      <q-btn flat class="bg-primary text-white" v-on:click="goTo('fiche')">Rechercher</q-btn>
-    </q-card-actions>
+      <q-btn flat @click="goToPrec()">Précédent</q-btn>
+      </q-card-actions>
   </q-card>
-
 
     <q-card v-if="etape=='fiche'" bordered >
       <q-card-section>
@@ -146,32 +152,40 @@
     </q-card>
 
 
-
   </q-page>
 </template>
 
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'Recherche voiture',
     data(){
       return {
-        etape: null,
+        etape: "init",
+        isSameCar: false,
         prec:[],
         selectedCar: null,
+        oldCarsResults: null,
+        results: null,
         form: {
-          minPrice:null,
-          maxPrice:null,
+          minPrice:0,
+          maxPrice:0,
           codePostal:null,
-          minKm:null,
-          maxKm:null,
+          minKm:0,
+          maxKm:0,
           searchText:null
         }
       }
     },
 
     mounted(){
-      this.goTo('recherche');
+      axios.get('/api/old-car')
+        .then((oldCar) => {
+          this.oldCarsResults = oldCar.data.results;
+          console.log('oldCar.results: ', oldCar.data.results);
+        });
     },
 
     methods : {
@@ -179,12 +193,28 @@
         this.prec.push(this.etape);
         this.etape = etape;
       },
+
       goToPrec() {
+        if (this.isSameCar) {
+            this.isSameCar = false;
+        }
         this.etape = this.prec.pop();
       },
 
+      sameCar() {
+          this.goTo("resultats");
+          this.isSameCar = true;
+          this.prec.push("recherche");
+          this.results = this.oldCarsResults;
+      },
+
       displayResults() {
-        this.goTo('resultats');
+        axios.get('/api/search')
+          .then((cars) => {
+            this.results = cars.data.results;
+            console.log('oldCar.results: ', cars.data.results);
+            this.goTo('resultats');
+          });
       },
 
       displayDetail() {
