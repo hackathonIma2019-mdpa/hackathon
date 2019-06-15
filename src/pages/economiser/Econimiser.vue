@@ -1,7 +1,7 @@
 <template>
   <div id="page-econimiser">
     <div style="display: flex;justify-content: center">
-      <h6>Econimiser sur mes réparations</h6>
+      <h6>Economiser sur mes réparations</h6>
     </div>
     <div class="q-pa-md">
       <div class="text-subtitle1">
@@ -24,7 +24,7 @@
         <div class="col" style="text-align: end">
           <q-btn @click="left" flat round icon="fas fa-chevron-left"></q-btn>
         </div>
-        <div v-ripple="{ color: 'secondary' }" class="relative-position">
+        <div v-ripple="{ color: 'primary' }" class="relative-position">
           <img :src="img" @click="allerList"/>
         </div>
         <div class="col">
@@ -56,12 +56,11 @@
       </div>
 
     </div>
-    <div style="margin-top: 2em;margin-left: 1em;margin-right: 1em">
-      <q-btn color="primary" icon="mail" label="On Left"></q-btn>
-    </div>
+    <back-button route="/"></back-button>
   </div>
 </template>
 <script>
+  import BackButton from '../../components/BackButton'
   import avantFace from '../../assets/econimiser/avant-face.jpg';
   import faceLateraleDroite from '../../assets/econimiser/face-laterale-droite.jpg';
   import faceLateraleGauche from '../../assets/econimiser/face-laterale-gauche.jpg';
@@ -72,6 +71,7 @@
 
   export default {
     name: 'Econimiser',
+    components:{BackButton},
     data() {
       return {
         img: avantFace,
