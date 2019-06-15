@@ -9,9 +9,10 @@
   "scripts": {
     "start": "node ./bin/www",
     "webstart": "quasar dev",
-    "scripts.install": "quasar build"
+    "scripts.install": "@quasar/cli/bin/quasar build"
   },
   "dependencies": {
+    "@quasar/cli": "^1.0.0-rc.2",
     "@quasar/extras": "^1.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
