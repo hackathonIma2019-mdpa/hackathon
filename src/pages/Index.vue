@@ -7,15 +7,15 @@
         <q-icon size="3em" name="monetization_on"/>
         <div>Estimer les dégats</div>
       </q-btn>
-      <q-btn to="/mobility" unelevated color="secondary" class="q-btn--no-uppercase">
+      <q-btn to="/search-car" unelevated color="secondary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="directions_car"/>
         <div>Changer votre voiture</div>
       </q-btn>
-      <q-btn to="/economiser" unelevated color="tertiary" class="q-btn--no-uppercase">
+      <q-btn to="/mobility" unelevated color="tertiary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="directions_bike"/>
         <div>Comment me déplacer en attendant</div>
       </q-btn>
-      <q-btn to="/economiser-list" unelevated color="fourth" class="q-btn--no-uppercase">
+      <q-btn to="/economiser" unelevated color="fourth" class="q-btn--no-uppercase">
         <q-icon size="3em" name="star"/>
         <div>Economiser sur mes réparations</div>
       </q-btn>
