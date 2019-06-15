@@ -7,28 +7,43 @@
       </q-card-section>
 
       <q-separator inset/>
-      <q-uploader
-        ref="uploader"
-        @added="added"
-        @removed="removed"
-        @uploaded="uploaded"
-        accept="image/*"
-        :disable="sent"
-        :hide-upload-btn="true"
-        url="/api/societaires/1/cars/damages/pictures"
-        style="width: 100%;"
-      />
-      <div class="row justify-end">
-        <q-btn color="primary" label="Envoyer" icon="cloud"
-               v-if="hasFile"
-               :disable="sent"
-               @click="$refs.uploader.upload()"
+      <q-card-section>
+        <q-uploader
+          ref="uploader"
+          @added="added"
+          @removed="removed"
+          @uploaded="uploaded"
+          accept="image/*"
+          :disable="sent"
+          :hide-upload-btn="true"
+          url="/api/societaires/1/cars/damages/pictures"
+          style="width: 100%;"
         />
-      </div>
+        <div class="row justify-end">
+          <q-btn color="primary" label="Envoyer" icon="cloud"
+                 v-if="hasFile"
+                 :disable="sent"
+                 @click="$refs.uploader.upload()"
+          />
+        </div>
+      </q-card-section>
       <q-separator inset v-if="sent"/>
-      <div v-if="sent">
-        {{score}}
-      </div>
+      <q-card-section v-if="score !== '' && score <= 50">
+        A première vue, votre voiture devrait être réparable.
+      </q-card-section>
+      <q-separator inset v-if="score"/>
+      <q-card-section v-if="score !== '' && score > 50">
+        Uh Oh, il y à {{score}}% de chances que votre véhicule ne soit pas réparable
+      </q-card-section>
+
+      <q-separator inset v-if="score !== ''"/>
+
+      <q-actions v-if="score !== ''" align="between">
+        <q-btn flat class="white" @click="go('/')">Retour à l'accueil</q-btn>
+        <q-btn class="bg-primary text-white" v-if="score <= 50" @click="go('/mobility')">Comment se déplacer en attendant ?
+        </q-btn>
+        <q-btn class="bg-primary text-white" v-if="score > 50" @click="go('/search-car')">Changer de véhicule</q-btn>
+      </q-actions>
     </q-card>
   </q-page>
 </template>
@@ -37,17 +52,22 @@
 </style>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'CarDamage',
     data: function () {
       return {
         hasFile: false,
         sent: false,
-        score: ''
+        score: '',
       }
     },
     methods: {
-      added() {
+      go(route) {
+        this.$router.push(route);
+      },
+      added(file) {
         this.hasFile = true;
       },
       removed() {
@@ -55,7 +75,10 @@
       },
       uploaded(info) {
         this.sent = true;
-        this.score = info;
+        axios.get('/api/societaires/1/cars/damages/scores/latest')
+          .then((score) => {
+            this.score = (Object.keys(score.data) || {"80": null})[0].replace('\.png', '');
+          });
       }
     }
   }

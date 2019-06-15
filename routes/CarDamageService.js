@@ -13,6 +13,10 @@ class CarDamageService {
       .get(this.getPictures.bind(this))
     ;
 
+    app.route('/api/societaires/:idSocietaire/cars/damages/scores/latest')
+      .get(this.getScore.bind(this))
+    ;
+
     LOGGER.debug("CarDamageService intialized")
   }
 
@@ -22,8 +26,14 @@ class CarDamageService {
 
   getPictures(req, res) {
     LOGGER.debug(JSON.stringify(this.db.get(this.db.collections.societaires).data));
-    let societaire = this.db.get(this.db.collections.test).data.find((el) => el.$loki === Number(req.params.idSocietaire)) || {};
+    let societaire = this.db.get(this.db.collections.societaires).data.find((el) => el.$loki === Number(req.params.idSocietaire)) || {};
     res.send(societaire.pictures);
+  }
+
+  getScore(req, res) {
+    LOGGER.debug(JSON.stringify(this.db.get(this.db.collections.societaires).data));
+    let societaire = this.db.get(this.db.collections.societaires).data.find((el) => el.$loki === Number(req.params.idSocietaire)) || {};
+    res.send(societaire.pictures[societaire.pictures.length-1]);
   }
 
   postPicture(req, res) {
