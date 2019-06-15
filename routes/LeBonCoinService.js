@@ -18,7 +18,7 @@ class LeBonCoinService {
   initSearch() {
     this.searchOldCar().run().then(data => {
       data.$loki = 1;
-      this.save(data);
+      this.db.insert(this.db.collections.cars, data);
     });
   }
 
