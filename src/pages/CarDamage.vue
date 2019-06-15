@@ -1,12 +1,13 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-card bordered class=" my-card">
-      <q-card-section>
+  <q-page class="column justify-start items-center q-pa-md">
+    <h1 class="text-secondary text-center">Estimer les dégats <br /> sur votre véhicule</h1>
+    <q-card bordered class="my-card">
+      <q-card-section class="bg-primary text-white">
         <div class="text-h6">Prenez une photo de votre véhicule</div>
         <div class="text-subtitle2"><u>Powered by Fotonowere</u></div>
       </q-card-section>
 
-      <q-separator inset/>
+      <q-separator />
       <q-card-section>
         <q-uploader
           ref="uploader"
@@ -18,12 +19,18 @@
           :hide-upload-btn="true"
           url="/api/societaires/1/cars/damages/pictures"
           style="width: 100%;"
+          color="tertiary"
+          class="no-box-shadow"
         />
         <div class="row justify-end">
-          <q-btn color="primary" label="Envoyer" icon="cloud"
+          <q-btn color="primary"
+                 label="Envoyer"
+                 icon="cloud_upload"
                  v-if="hasFile"
                  :disable="sent"
                  @click="$refs.uploader.upload()"
+                 class="c-btn-upload"
+                 unelevated
           />
         </div>
       </q-card-section>

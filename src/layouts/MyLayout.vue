@@ -10,7 +10,7 @@
             IMA'ssister
           </q-toolbar-title>
         </q-btn>
-        <q-space />
+        <q-space/>
 
         <q-btn
           flat
@@ -68,6 +68,10 @@
 
     <q-page-container>
       <router-view/>
+      <div class="c-depanneur-container">
+        <div class="c-depanneur"></div>
+      </div>
+      <q-linear-progress style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
     </q-page-container>
   </q-layout>
 </template>
@@ -79,8 +83,22 @@
     name: 'MyLayout',
     data() {
       return {
-        right: this.$q.platform.is.desktop
+        right: this.$q.platform.is.desktop,
+        progress: 0,
+        timeToDepanne: 180,
+        interval: null
       }
+    },
+    mounted() {
+      this.interval = setInterval(() => {
+        this.progress += 1 / this.timeToDepanne;
+        if(this.progress >= 1) {
+          clearInterval(this.interval);
+        }
+      }, 1000);
+
+
+
     },
     methods: {
       openURL
