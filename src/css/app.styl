@@ -1,8 +1,48 @@
 // app global css
+.bg-tertiary
+  background-color $tertiary
+.bg-fourth
+  background-color $fourth
+.bg-primary-lighten
+  background-color $primaryligthen
+
+.text-tertiary
+  color $tertiary
+.text-fourth
+  color $fourth
+
+
+h1
+  font-size 2em
+  line-height 2.1em
+h2
+  font-size 1.6em
+  line-height 1.5em
+  color $grey-8
 
 .q-header
+  background: linear-gradient(90deg,$primary 20%,$primaryligthen 75%);
   a
   &.q-btn
     display inline-flex
     .q-toolbar__title
       margin-left 5px
+
+
+.q-item.q-router-link--active,
+.q-item--active
+  background-color #FFF
+  color $primaryligthen
+
+
+.home
+  h1
+    margin 0
+  h2
+    font-size 1.22em
+    margin-top 0
+  .q-btn
+    margin 1em
+    width 140px
+    height 140px
+

@@ -2,7 +2,7 @@
   <q-layout view="hHr lpr fFf" class="no-shadow">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat class="self-stretch q-hoverable q-btn--no-uppercase no-border-radius">
+        <q-btn to="/" flat class="self-stretch q-hoverable q-btn--no-uppercase no-border-radius">
           <q-avatar>
             <img src="../statics/icons/imassister_logo_white_42.png"/>
           </q-avatar>
@@ -28,53 +28,39 @@
       v-model="right"
       side="right"
       bordered
-      content-class="bg-grey-2"
+      content-class="bg-primary-lighten text-white"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable to="/economiser">
-          <q-item-section  avatar>
-            <q-icon name="money"/>
+        <q-item clickable tag="a" to="/car-damage" exact>
+          <q-item-section avatar>
+            <q-icon name="monetization_on"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Economiser</q-item-label>
-            <q-item-label caption>Si vous voulez faire vos réparations vous même.</q-item-label>
+            <q-item-label>Estimer les dégats</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
+        <q-item clickable tag="a" to="/mobility">
           <q-item-section avatar>
-            <q-icon name="code"/>
+            <q-icon name="directions_car"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Changer votre voiture</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
+        <q-item clickable tag="a" to="/economiser" exact>
           <q-item-section avatar>
-            <q-icon name="chat"/>
+            <q-icon name="directions_bike"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Comment me déplacer en attendant</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
+        <q-item clickable tag="a" to="/economiser-list">
           <q-item-section avatar>
-            <q-icon name="record_voice_over"/>
+            <q-icon name="star"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
-          <q-item-section avatar>
-            <q-icon name="rss_feed"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
+            <q-item-label>Economiser sur mes réparations</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
