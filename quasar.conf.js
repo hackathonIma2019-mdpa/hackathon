@@ -24,6 +24,7 @@ module.exports = function (ctx) {
       // all: true, // --- includes everything; for dev only!
 
       components: [
+        'QAvatar',
         'QLayout',
         'QHeader',
         'QDrawer',
@@ -42,6 +43,7 @@ module.exports = function (ctx) {
         'QCardActions',
         'QSeparator',
         'QUploader',
+        'QSpace'
       ],
 
       directives: [
