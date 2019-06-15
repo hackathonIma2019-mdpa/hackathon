@@ -47,7 +47,7 @@
             <q-item-label>Changer votre voiture</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/economiser" exact>
+        <q-item clickable tag="a" to="/Mobility" exact>
           <q-item-section avatar>
             <q-icon name="directions_bike"/>
           </q-item-section>
@@ -55,7 +55,7 @@
             <q-item-label>Comment me déplacer en attendant</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/economiser-list">
+        <q-item clickable tag="a" to="/economiser">
           <q-item-section avatar>
             <q-icon name="star"/>
           </q-item-section>

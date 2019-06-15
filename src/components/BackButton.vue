@@ -1,6 +1,6 @@
 <template>
   <div class="div-back-button">
-    <q-btn color="primary" icon="arrow_back" @click="goto" class="button" label="Précédent"></q-btn>
+    <q-btn color="secondary" icon="arrow_back" @click="goto" class="button" label="Précédent"></q-btn>
   </div>
 </template>
 <script>
