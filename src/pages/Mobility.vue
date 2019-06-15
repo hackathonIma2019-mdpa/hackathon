@@ -11,13 +11,13 @@
       </q-card-section>
       <q-separator inset />
       <q-card-actions vertical>
-        <q-btn flat v-on:click="goTo('besoins')">Commencer</q-btn>
+        <q-btn flat class="bg-primary text-white"  v-on:click="goTo('besoins')">Commencer</q-btn>
       </q-card-actions>
     </q-card>
 
     <q-card v-if="etape=='besoins'" bordered >
       <q-card-section>
-        <div class="text-h6">Avez-vous besoin de votre véhicule dans les prochains jours ?</div>
+        <div class="text-h6">Avez-vous besoin d'un véhicule dans les prochains jours ?</div>
       </q-card-section>
       <q-separator inset />
       <q-card-actions vertical>
