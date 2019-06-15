@@ -17,7 +17,6 @@ class LeBonCoinService {
 
   initSearch() {
     this.searchOldCar().run().then(data => {
-      LOGGER.debug('data old car: ', data);
       data.$loki = 1;
       this.save(data);
     });
@@ -59,7 +58,6 @@ class LeBonCoinService {
       search.addSearchExtra("ranges", {mileage: {min: minKm, max: maxKm }});
     }
     return search.run().then(data => {
-      LOGGER.debug('data search car: ', data);
       this.save(data);
       return data;
     });
