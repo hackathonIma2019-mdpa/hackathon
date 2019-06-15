@@ -9,6 +9,7 @@ const DeployDB = function DeployDB() {
     //Collections
     this.collections = {
         societaires: 'societaires',
+        cars: 'cars',
         test: 'test'
     };
     const self = this;
