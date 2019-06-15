@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "webstart": "quasar dev",
-    "build": "quasar build"
+    "scripts.install": "quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
