@@ -24,7 +24,7 @@
         <div class="col" style="text-align: end">
           <q-btn @click="left" flat round icon="fas fa-chevron-left"></q-btn>
         </div>
-        <div>
+        <div v-ripple="{ color: 'secondary' }" class="relative-position">
           <img :src="img" @click="allerList"/>
         </div>
         <div class="col">
@@ -54,6 +54,10 @@
       <div>
         <q-select square v-model="model" :options="options"/>
       </div>
+
+    </div>
+    <div style="margin-top: 2em;margin-left: 1em;margin-right: 1em">
+      <q-btn color="primary" icon="mail" label="On Left"></q-btn>
     </div>
   </div>
 </template>
@@ -179,7 +183,7 @@
       },
 
       allerList() {
-        this.$router.push('/economiser-list')
+        window.setTimeout(() => this.$router.push('/economiser-list'), 750)
       }
     }
   }
