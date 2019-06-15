@@ -2,6 +2,10 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
+        <q-toolbar-title>
+          <img src="../statics/icons/imassister_logo_white_42.png" />
+        </q-toolbar-title>
+
         <q-btn
           flat
           dense
@@ -11,17 +15,12 @@
         >
           <q-icon name="menu" />
         </q-btn>
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
+      side="right"
       bordered
       content-class="bg-grey-2"
     >
