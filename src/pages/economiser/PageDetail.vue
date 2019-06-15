@@ -20,7 +20,7 @@
             <h5 class="text-primary">79 &euro;</h5>
           </q-item-section>
         </q-item>
-        <q-item clickable v-ripple>
+        <q-item clickable v-ripple to="/economiser-selectionner">
           <q-item-section top thumbnail class="q-ml-none">
             <img src="../../assets/econimiser/armature-avant-s-5628fc31e0dad-200x200.jpg">
           </q-item-section>
@@ -86,11 +86,14 @@
           </q-item-section>
         </q-item>
       </q-list>
+      <back-button route="/economiser"></back-button>
     </div>
   </div>
 </template>
 <script>
+  import BackButton from '../../components/BackButton'
   export default {
-    name: 'EconomiserDetail'
+    name: 'EconomiserDetail',
+    components:{BackButton}
   }
 </script>
