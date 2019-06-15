@@ -1,5 +1,5 @@
 <template>
-  <q-page class="home flex q-pa-md">
+  <q-page class="home column justify-start items-center q-pa-md">
     <h1 class="text-secondary text-center">Bienvenue sur IMA'ssister !</h1>
     <h2 class="text-center">Votre dépanneur arrive. <br />Profitez utilement de votre attente ci-dessous.</h2>
     <div class="row justify-around">
