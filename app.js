@@ -11,21 +11,20 @@ const TestService = require('./routes/TestService').TestService;
 
 var app = express();
 DeployDb.init().then(() => {
-    LOGGER.info("db initialized");
+  LOGGER.info("db initialized");
 
-    new TestService(app, DeployDb);
 
   app.use(log('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+  app.use(express.json());
+  app.use(express.urlencoded({extended: false}));
+  app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'dist/spa')));
 
-    app.use('/', indexRouter);
-    app.use('/users', usersRouter);
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  new TestService(app, DeployDb);
 
 });
-
 
 
 module.exports = app;
