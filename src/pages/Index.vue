@@ -5,7 +5,7 @@
     <div class="row justify-around">
       <q-btn to="/car-damage" unelevated  color="primary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="monetization_on"/>
-        <div>Estimer les dégats</div>
+        <div>Estimer les dégats sur mon véhicule</div>
       </q-btn>
       <q-btn to="/search-car" unelevated color="secondary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="directions_car"/>
