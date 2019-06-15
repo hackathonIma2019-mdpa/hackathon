@@ -9,6 +9,8 @@ const routes = [
       { path: '/mobility', component: () => import('pages/Mobility.vue') },
       { path: '/economiser', component: () => import('pages/economiser/Econimiser.vue') },
       { path: '/economiser-list', component: () => import('pages/economiser/PageDetail.vue') },
+      { path: '/search-car', component: () => import('pages/SearchNewCar.vue') },
+      { path: '/cassebrique', component: () => import('pages/games/Cassebrique.vue') },
     ]
   }
 ]
