@@ -12,6 +12,7 @@ const routes = [
       { path: '/economiser-selectionner', component: () => import('pages/economiser/Selectionner.vue') },
       { path: '/search-car', component: () => import('pages/SearchNewCar.vue') },
       { path: '/cassebrique', component: () => import('pages/games/Cassebrique.vue') },
+      { path: '/contact', component: () => import('pages/Contact.vue') },
     ]
   }
 ]

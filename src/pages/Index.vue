@@ -19,6 +19,14 @@
         <q-icon size="3em" name="star"/>
         <div>Economiser sur mes réparations</div>
       </q-btn>
+      <q-btn to="/contact" unelevated color="six" class="q-btn--no-uppercase">
+        <q-icon size="3em" name="phone"/>
+        <div>Contacter mon assureur</div>
+      </q-btn>
+      <q-btn to="/cassebrique" unelevated color="fifth" class="q-btn--no-uppercase">
+        <q-icon size="3em" name="games"/>
+        <div>Se détendre en attendant ?</div>
+      </q-btn>
     </div>
   </q-page>
 </template>
