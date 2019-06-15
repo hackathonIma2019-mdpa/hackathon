@@ -8,6 +8,7 @@ var indexRouter = require('./routes/api');
 var usersRouter = require('./routes/users');
 const DeployDb = require('./utils/DeployDB');
 const TestService = require('./routes/TestService').TestService;
+const LeBonCoinService = require('./routes/LeBonCoinService').LeBonCoinService;
 
 var app = express();
 DeployDb.init().then(() => {
@@ -23,6 +24,7 @@ DeployDb.init().then(() => {
   app.use('/', indexRouter);
   app.use('/users', usersRouter);
   new TestService(app, DeployDb);
+  new LeBonCoinService(app, DeployDb);
 
 });
 
