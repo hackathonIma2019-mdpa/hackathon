@@ -4,6 +4,7 @@
       <q-toolbar>
         <q-toolbar-title>
           <img src="../statics/icons/imassister_logo_white_42.png" />
+          <span>IMA'ssister</span>
         </q-toolbar-title>
 
         <q-btn
