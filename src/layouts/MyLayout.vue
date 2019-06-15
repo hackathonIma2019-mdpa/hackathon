@@ -1,8 +1,8 @@
 <template>
-  <q-layout view="hHr lpR fFf">
+  <q-layout view="hHr lpr fFf" class="no-shadow">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat class="self-stretch q-hoverable no-border-radius">
+        <q-btn flat class="self-stretch q-hoverable q-btn--no-uppercase no-border-radius">
           <q-avatar>
             <img src="../statics/icons/imassister_logo_white_42.png"/>
           </q-avatar>
