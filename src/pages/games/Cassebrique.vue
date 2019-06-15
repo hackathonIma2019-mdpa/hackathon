@@ -5,7 +5,7 @@
         <q-btn v-if="!game" @click="launchGame()">Prêt ? </q-btn>
       </q-card-actions>
       <q-card-section>
-        <iframe v-if="game === true" src="assets/cassebrique/index.html"></iframe>
+        <iframe v-if="game === true" src="statics/cassebrique/index.html"></iframe>
       </q-card-section>
     </q-card>
   </q-page>
