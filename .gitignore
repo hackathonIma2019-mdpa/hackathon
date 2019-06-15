@@ -4,3 +4,4 @@ node_modules
 *.iml
 .quasar
 src/.DS_STORE
+logs/logs.log
