@@ -8,6 +8,7 @@ const routes = [
       { path: '/car-damage', component: () => import('pages/CarDamage.vue') },
       { path: '/mobility', component: () => import('pages/Mobility.vue') },
       { path: 'Econimiser', component: () => import('pages/Econimiser.vue') },
+      { path: '/economiser-list', component: () => import('pages/economiser/PageDetail.vue') },
     ]
   }
 ]

@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 const DeployDb = require('./utils/DeployDB');
 const TestService = require('./routes/TestService').TestService;
 const CarDamageService = require('./routes/CarDamageService').CarDamageService;
+const LeBonCoinService = require('./routes/LeBonCoinService').LeBonCoinService;
 
 var app = express();
 DeployDb.init().then(() => {
@@ -25,6 +26,7 @@ DeployDb.init().then(() => {
   app.use('/users', usersRouter);
   new TestService(app, DeployDb);
   new CarDamageService(app, DeployDb);
+  new LeBonCoinService(app, DeployDb);
 
 });
 
