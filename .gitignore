@@ -2,3 +2,5 @@
 .idea/
 node_modules
 *.iml
+.quasar
+dist/spa

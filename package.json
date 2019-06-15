@@ -1,14 +1,33 @@
 {
   "name": "untitled",
   "version": "0.0.0",
+  "description": "A Quasar Framework app",
+  "productName": "Quasar App",
+  "cordovaId": "org.cordova.quasar.app",
+  "author": "cgenin <genin.christophe@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "webstart": "quasar dev",
+    "build": "quasar build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "morgan": "~1.9.1"
-  }
+    "morgan": "~1.9.1",
+    "@quasar/extras": "^1.0.0",
+    "quasar": "^1.0.0-beta.0"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.0.0-beta.0"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
 }
