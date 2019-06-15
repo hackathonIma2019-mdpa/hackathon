@@ -28,10 +28,9 @@
       v-model="right"
       side="right"
       bordered
-      content-class="bg-grey-2"
+      content-class="bg-primary-lighten text-white"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
             <q-icon name="school"/>
