@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "webstart": "quasar dev",
-    "scripts.install": "@quasar/cli/bin/quasar build"
+    "scripts.install": "quasar build"
   },
   "dependencies": {
     "@quasar/cli": "^1.0.0-rc.2",
@@ -20,7 +20,7 @@
     "express": "~4.16.1",
     "leboncoin-api": "0.0.37",
     "morgan": "~1.9.1",
-    "quasar": "^1.0.0-beta.0"
+    "quasar": "^1.0.0-rc.4"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0-beta.0",
