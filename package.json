@@ -12,11 +12,12 @@
     "build": "quasar build"
   },
   "dependencies": {
+    "@quasar/extras": "^1.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "leboncoin-api": "0.0.37",
     "morgan": "~1.9.1",
-    "@quasar/extras": "^1.0.0",
     "quasar": "^1.0.0-beta.0"
   },
   "devDependencies": {
