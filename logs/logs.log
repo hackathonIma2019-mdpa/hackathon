@@ -58,3 +58,10 @@
 {"level":"info","message":"db initialized","timestamp":"2019-06-15T21:08:31.387Z"}
 {"level":"debug","message":"Service Test intialized","timestamp":"2019-06-15T21:08:31.389Z"}
 {"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-15T21:08:31.389Z"}
+{"level":"debug","message":"DB path : /Users/christophegenin/monAssisteur/data.json","timestamp":"2019-06-15T21:51:37.231Z"}
+{"level":"debug","message":"DB : createIfNotExist : societaires","timestamp":"2019-06-15T21:51:37.970Z"}
+{"level":"debug","message":"DB : createIfNotExist : cars","timestamp":"2019-06-15T21:51:37.971Z"}
+{"level":"debug","message":"DB : createIfNotExist : test","timestamp":"2019-06-15T21:51:37.971Z"}
+{"level":"info","message":"db initialized","timestamp":"2019-06-15T21:51:37.972Z"}
+{"level":"debug","message":"Service Test intialized","timestamp":"2019-06-15T21:51:37.975Z"}
+{"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-15T21:51:37.976Z"}
