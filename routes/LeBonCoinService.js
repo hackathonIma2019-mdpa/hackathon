@@ -16,10 +16,11 @@ class LeBonCoinService {
 }
 
   initSearch() {
-    this.searchOldCar().run().then(data => {
-      data.$loki = 1;
-      this.db.insert(this.db.collections.cars, data);
-    });
+    //TODO uncomment later
+    //this.searchOldCar().run().then(data => {
+    //  data.$loki = 1;
+    //  this.db.insert(this.db.collections.cars, data);
+    //});
   }
 
   searchOldCar() {
