@@ -150,7 +150,10 @@
         </q-card-section>
         <q-separator/>
       </q-card>
-      <q-btn flat @click="goToPrec()">Précédent</q-btn>
+
+      <div class="row justify-center" style="margin-top: 15px; margin-bottom: 15px;">
+        <q-btn unelevated color="primary" @click="goToPrec()">Rechercher un autre modèle</q-btn>
+      </div>
     </div>
 
     <q-card v-if="etape=='fiche'" bordered>

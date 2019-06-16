@@ -39,7 +39,7 @@
             <q-item-label>Estimer les dégats</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/mobility">
+        <q-item clickable tag="a" to="/search-car">
           <q-item-section avatar>
             <q-icon name="directions_car"/>
           </q-item-section>
@@ -47,7 +47,7 @@
             <q-item-label>Changer votre voiture</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/Mobility" exact>
+        <q-item clickable tag="a" to="/mobility" exact>
           <q-item-section avatar>
             <q-icon name="directions_bike"/>
           </q-item-section>
@@ -61,6 +61,22 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Economiser sur mes réparations</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" to="/contact">
+          <q-item-section avatar>
+            <q-icon name="phone"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Contacter mon assureur</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" to="/cassebrique">
+          <q-item-section avatar>
+            <q-icon name="games"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Se détendre en attendant ?</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
