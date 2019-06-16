@@ -84,9 +84,7 @@
 
     <q-page-container>
       <router-view/>
-      <div class="c-depanneur-container">
-        <div class="c-depanneur"></div>
-      </div>
+      <div class="c-depanneur"></div>
       <q-linear-progress style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
     </q-page-container>
   </q-layout>
@@ -106,7 +104,9 @@
       }
     },
     mounted() {
+      let depanneurTruck = document.querySelector('.c-depanneur');
       this.interval = setInterval(() => {
+        depanneurTruck.style.transform = "translateX("+ this.progress * 100 +"%)";
         this.progress += 1 / this.timeToDepanne;
         if(this.progress >= 1) {
           clearInterval(this.interval);
@@ -122,5 +122,21 @@
   }
 </script>
 
-<style>
+<style scoped lang="stylus">
+  .c-depanneur
+    z-index 1000
+    position fixed
+    bottom -6px
+    left -20px
+    height 45px
+    color #FFF
+    width 100%
+    transition transform .3s linear
+    &::after
+      display block
+      content ''
+      width 45px
+      height 45px
+      background-image url("../assets/tow-truck.png")
+      background-size 45px
 </style>
