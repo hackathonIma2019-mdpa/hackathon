@@ -84,7 +84,11 @@
 
     <q-page-container>
       <router-view/>
-      <div class="c-depanneur"></div>
+      <div class="c-depanneur">
+      </div>
+      <div class="c-depanneur-time">
+        {{ myTime(timeToDisplay) }}
+      </div>
       <q-linear-progress style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
     </q-page-container>
   </q-layout>
@@ -100,6 +104,7 @@
         right: this.$q.platform.is.desktop,
         progress: 0,
         timeToDepanne: 180,
+        timeToDisplay: 180,
         interval: null
       }
     },
@@ -107,6 +112,7 @@
       let depanneurTruck = document.querySelector('.c-depanneur');
       this.interval = setInterval(() => {
         depanneurTruck.style.transform = "translateX("+ this.progress * 100 +"%)";
+        this.timeToDisplay--;
         this.progress += 1 / this.timeToDepanne;
         if(this.progress >= 1) {
           clearInterval(this.interval);
@@ -117,7 +123,20 @@
 
     },
     methods: {
-      openURL
+      openURL,
+      myTime() {
+        let time = this.timeToDisplay;
+        let hr = ~~(time / 3600);
+        let min = ~~((time % 3600) / 60);
+        let sec = time % 60;
+        let sec_min = "";
+        if (hr > 0) {
+          sec_min += "" + hrs + ":" + (min < 10 ? "0" : "");
+        }
+        sec_min += "" + min + ":" + (sec < 10 ? "0" : "");
+        sec_min += "" + sec;
+        return sec_min+ " min";
+      }
     }
   }
 </script>
@@ -143,4 +162,21 @@
       height 45px
       background-image url("../assets/tow-truck.png")
       background-size 45px
+
+  .c-depanneur-time
+    display flex
+    justify-content center
+    align-items center
+    z-index 1001
+    position fixed
+    top 58px
+    width 45px
+    margin-left 45%
+    height 45px
+    border-radius 50%
+    background-color #fff
+    border 3px solid $primary
+    color $primary
+    line-height 15px
+    text-align center
 </style>
