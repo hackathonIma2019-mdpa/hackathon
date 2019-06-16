@@ -123,10 +123,14 @@
 </script>
 
 <style scoped lang="stylus">
+  .c-progress-depanner
+    position fixed
+    top 55px
+
   .c-depanneur
     z-index 1000
     position fixed
-    bottom -6px
+    top 50px
     left -20px
     height 45px
     color #FFF
