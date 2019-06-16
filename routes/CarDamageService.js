@@ -27,7 +27,9 @@ class CarDamageService {
   getPictures(req, res) {
     LOGGER.debug(JSON.stringify(this.db.get(this.db.collections.societaires).data));
     let societaire = this.db.get(this.db.collections.societaires).data.find((el) => el.$loki === Number(req.params.idSocietaire)) || {};
-    res.send(societaire.pictures.map((file) => {
+
+    let pictures = societaire.pictures || [];
+    res.send(pictures.map((file) => {
       let filename = Object.keys(file)[0];
       return {
         score : filename.replace(/(\.png)|(\.jpeg)|(\.jpg)/i,''),
