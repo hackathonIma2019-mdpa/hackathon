@@ -1,9 +1,9 @@
 <template>
-  <q-page class="column justify-start items-center">
+  <q-page class="column justify-start items-center q-pa-md">
     <div v-if="etape=='begin'">
       <h1 class="text-secondary text-center">Votre diagnostic mobilité</h1>
       <q-card bordered>
-        <q-card-section>
+        <q-card-section >
           Votre assurance ne prends pas en charge de véhicule de prêt ? Pas de panique, nous allons étudier ensemble vos besoins pour trouver la meilleure solution pendant la durée d'imobilisation de votre véhicule
         </q-card-section>
         <q-separator/>
@@ -14,10 +14,10 @@
     </div>
 
     <q-card v-if="etape=='usage'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Quels types de déplacement devez vous faire ?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-toggle
           v-model="form.usages.quotidien"
@@ -32,19 +32,19 @@
           label="Trajets exceptionnels (partir en vacances, ...)"
         />
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-          <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
           <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
 
 
     <q-card v-if="etape=='moyenTransportQuotidien'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Pour vos trajets quotidiens (aller au travail, faire les courses, ...), quels moyens de transport pouvez vous utiliser?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-toggle
           v-model="form.moyenTransportQuotidien.alternatif.active"
@@ -62,9 +62,9 @@
           label="Autre vehicule"
         />
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
@@ -73,7 +73,7 @@
       <q-card-section>
         <div class="text-h6">Pour vos trajets exceptionnels (partir en vacances, ...), quels moyens de transport pouvez vous utiliser?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-toggle
           v-model="form.moyenTransportExceptionnel.commun.active"
@@ -86,23 +86,22 @@
           label="Autre vehicule"
         />
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
 
 
     <q-card v-if="etape=='complAlternatif'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Possédez-vous déja un moyen de transport alternatif ou souhaitez-vous en acquérir un?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-btn-toggle
           v-model="form.alternative"
-          push
           toggle-color="primary"
           :options="[
           {label: 'Je possède un moyen de transport alternatif', value: 'possede'},
@@ -129,18 +128,18 @@
         </q-btn-toggle>
         <q-date v-model="form.contact.date" minimal v-if="form.contact.type === 'plustard'"/>
       </q-card-section>
-      <q-separator inset v-if="form.alternative"/>
+      <q-separator v-if="form.alternative"/>
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
 
     <q-card v-if="etape=='complVoiture'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Seriez-vous interesser par du co-voiturage ?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-btn-toggle
           v-model="form.voiture"
@@ -153,19 +152,19 @@
         >
         </q-btn-toggle>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
 
 
     <q-card v-if="etape=='complCommun'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Quel type de transport en commun emprunterez-vous ?</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         <q-toggle
           v-model="form.commun.train"
@@ -183,9 +182,9 @@
           label="Métro"
         />
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
         <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
       </q-card-actions>
     </q-card>
@@ -193,16 +192,16 @@
 
 
     <q-card v-if="etape=='end'" bordered >
-      <q-card-section>
+      <q-card-section class="bg-tertiary text-white">
         <div class="text-h6">Et bien bon courage vous etes pas arrivez à destination!</div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-section vertical>
         Ha ha ha!
       </q-card-section>
-      <q-separator inset />
+      <q-separator />
       <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">Précédent</q-btn>
       </q-card-actions>
     </q-card>
 
