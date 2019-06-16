@@ -191,14 +191,14 @@
     </q-card>
 
 
-
     <q-card v-if="etape=='end'" bordered >
       <q-card-section>
-        <div class="text-h6">Et bien bon courage vous etes pas arrivez à destination!</div>
+        <div class="text-h6">Bon voyage !</div>
       </q-card-section>
       <q-separator inset />
       <q-card-section vertical>
-        Ha ha ha!
+        <div v-if="form.alternative">En trottinette ou en vélo, respectez le code de la route et restez prudent.</div>
+        <div>Nous mettons tout en oeuvre, pour que votre véhicule soit prêt dans les plus brefs délais.</div>
       </q-card-section>
       <q-separator inset />
       <q-card-actions align="between">
