@@ -10,7 +10,7 @@
             IMA'ssister
           </q-toolbar-title>
         </q-btn>
-        <q-space />
+        <q-space/>
 
         <q-btn
           flat
@@ -39,7 +39,7 @@
             <q-item-label>Estimer les dégats</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/mobility">
+        <q-item clickable tag="a" to="/search-car">
           <q-item-section avatar>
             <q-icon name="directions_car"/>
           </q-item-section>
@@ -47,7 +47,7 @@
             <q-item-label>Changer votre voiture</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" to="/Mobility" exact>
+        <q-item clickable tag="a" to="/mobility" exact>
           <q-item-section avatar>
             <q-icon name="directions_bike"/>
           </q-item-section>
@@ -63,11 +63,31 @@
             <q-item-label>Economiser sur mes réparations</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item clickable tag="a" to="/contact">
+          <q-item-section avatar>
+            <q-icon name="phone"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Contacter mon assureur</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" to="/cassebrique">
+          <q-item-section avatar>
+            <q-icon name="games"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Se détendre en attendant ?</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
     <q-page-container>
       <router-view/>
+      <div class="c-depanneur-container">
+        <div class="c-depanneur"></div>
+      </div>
+      <q-linear-progress style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
     </q-page-container>
   </q-layout>
 </template>
@@ -79,8 +99,22 @@
     name: 'MyLayout',
     data() {
       return {
-        right: this.$q.platform.is.desktop
+        right: this.$q.platform.is.desktop,
+        progress: 0,
+        timeToDepanne: 180,
+        interval: null
       }
+    },
+    mounted() {
+      this.interval = setInterval(() => {
+        this.progress += 1 / this.timeToDepanne;
+        if(this.progress >= 1) {
+          clearInterval(this.interval);
+        }
+      }, 1000);
+
+
+
     },
     methods: {
       openURL

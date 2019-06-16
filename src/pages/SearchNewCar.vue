@@ -1,135 +1,162 @@
 <template>
-  <q-page>
+  <q-page class="column justify-start items-center q-pa-md">
 
-    <q-card v-if="etape=='init'" bordered >
-      <q-card-actions align="between">
-        <q-btn flat @click="sameCar()">Je veux la même voiture</q-btn>
-        <q-btn flat @click="goTo('recherche')">Je veux changer de modèle</q-btn>
-      </q-card-actions>
-    </q-card>
+    <div v-if="etape==='init'" class="">
+      <h1 class="text-secondary text-center">Vous souhaitez changer de voiture ?</h1>
+      <q-btn-group spread unelevated>
+        <q-btn color="fourth" @click="sameCar()">Je veux la même voiture</q-btn>
+        <q-btn color="secondary" @click="goTo('recherche')">Je veux changer de modèle</q-btn>
+      </q-btn-group>
+    </div>
 
-    <q-card v-if="etape=='recherche'" bordered >
-      <q-card-section>
-        <div class="text-h6">
-          <i class="material-icons">
-            search
-          </i>
-          Recherche
-        </div>
-      </q-card-section>
-      <q-separator inset />
-      <q-card-section>
-        <q-input outlined
-                 v-model="form.searchText"
-                 label="Marque" />
-
-
-        Kilométrage
-        <div class="q-pa-md">
-          <q-badge color="secondary">
-            Min : {{form.minKm}}
-          </q-badge>
-
-          <q-slider
-            v-model="form.minKm"
-            :min="0"
-            :max="200000"
-            :step="5"
-            snap
-            label
-            label-always
-            color="purple"
-          />
-        </div>
-        <div class="q-pa-md">
-          <q-badge color="secondary">
-            Max : {{form.maxKm}}
-          </q-badge>
-
-          <q-slider
-            v-model="form.maxKm"
-            :min="0"
-            :max="200000"
-            :step="5"
-            snap
-            label
-            label-always
-            color="purple"
-          />
-        </div>
-
-        Prix
-        <div class="q-pa-md">
-          <q-badge color="secondary">
-            min : {{form.minPrice}}
-          </q-badge>
-
-          <q-slider
-            v-model="form.minPrice"
-            :min="0"
-            :max="100000"
-            :step="500"
-            snap
-            label
-            label-always
-            color="blue"
-          />
-        </div>
-        <div class="q-pa-md">
-          <q-badge color="secondary">
-            max : {{form.maxPrice}}
-          </q-badge>
-
-          <q-slider
-            v-model="form.maxPrice"
-            :min="0"
-            :max="100000"
-            :step="500"
-            snap
-            label
-            label-always
-            color="blue"
-          />
-        </div>
-
-
-        <q-input outlined
-                 v-model="form.codePostal"
-                 label="Code postal" />
-      </q-card-section>
-      <q-separator inset />
-
-      <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
-        <q-btn flat class="bg-primary text-white" v-on:click="goTo('resultats')">Rechercher</q-btn>
-      </q-card-actions>
-
-    </q-card>
-
-
-    <q-card v-if="etape=='resultats'" bordered >
-    <q-card-section>
-      <div class="text-h6">
-        <i class="material-icons">
-          format_list_bulleted
-        </i>
-        Résultats
+    <div v-if="etape=='recherche'" style="width: 100%">
+      <h1 class="text-secondary text-center">Votre nouvelle voiture en quelques clics !</h1>
+      <q-list bordered class="rounded-borders">
+        <q-expansion-item
+          expand-separator
+          icon="search"
+          label="Recherche"
+          class="bg-primary text-white"
+          expand-icon-class="text-white"
+          default-opened
+        >
+          <q-card>
+            <q-card-section>
+              <q-input outlined
+                       v-model="form.searchText"
+                       label="Marque"/>
+              <h6 class="text-tertiary">Kilométrage</h6>
+              <div class="badge-container">
+                <q-badge color="secondary">
+                  Min : {{form.minKm}}
+                </q-badge>
+                <q-slider
+                  v-model="form.minKm"
+                  :min="0"
+                  :max="200000"
+                  :step="5"
+                  snap
+                  label
+                  label-always
+                  color="purple"
+                />
+              </div>
+              <div class="badge-container">
+                <q-badge color="secondary">
+                  Max : {{form.maxKm}}
+                </q-badge>
+                <q-slider
+                  v-model="form.maxKm"
+                  :min="0"
+                  :max="200000"
+                  :step="5"
+                  snap
+                  label
+                  label-always
+                  color="purple"
+                />
+              </div>
+              <h6 class="text-tertiary">Prix</h6>
+              <div class="badge-container">
+                <q-badge color="secondary">
+                  min : {{form.minPrice}}
+                </q-badge>
+                <q-slider
+                  v-model="form.minPrice"
+                  :min="0"
+                  :max="100000"
+                  :step="500"
+                  snap
+                  label
+                  label-always
+                  color="blue"
+                />
+              </div>
+              <div class="badge-container">
+                <q-badge color="secondary">
+                  max : {{form.maxPrice}}
+                </q-badge>
+                <q-slider
+                  v-model="form.maxPrice"
+                  :min="0"
+                  :max="100000"
+                  :step="500"
+                  snap
+                  label
+                  label-always
+                  color="blue"
+                />
+              </div>
+              <q-input outlined
+                       v-model="form.codePostal"
+                       label="Code postal"/>
+            </q-card-section>
+            <q-separator inset/>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+      <div class="row justify-between" style="margin-top: 15px; margin-bottom: 15px;">
+        <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">
+          Précédent
+        </q-btn>
+        <q-btn flat class="bg-primary text-white" v-on:click="displayResults()">Rechercher</q-btn>
       </div>
-    </q-card-section>
-    <q-separator inset />
-    <q-card-section>
+    </div>
 
-      {{oldCarsResults}}
+    <div v-if="etape==='resultats'" style="width:100%;">
+      <h1 class="text-secondary text-center">Vos résultats</h1>
+      <q-card bordered>
+        <q-card-section class="bg-primary text-white">
+          <div class="text-h6" style="display: flex; align-items: center">
+            <q-icon size="1.3em" name="format_list_bulleted" style="margin-right: 15px;"></q-icon>
+            {{ nbResult }} Résultats
+          </div>
+        </q-card-section>
+        <q-separator/>
 
-    </q-card-section>
-    <q-separator inset />
+        <q-card-section>
+          <q-list bordered separator>
+            <q-item v-for="(car, index) in results" :key="index">
+              <q-item-section>
+                <q-img
+                  :src="car.images[0]"
+                  style="height: 140px; max-width: 150px"
+                  v-if="car && car.images && car.images.length> 0"
+                >
+                  <template v-slot:loading>
+                    <div class="text-tertiary">
+                      <q-spinner-ios/>
+                      <div class="q-mt-md">Loading...</div>
+                    </div>
+                  </template>
+                </q-img>
+              </q-item-section>
+              <q-item-section>
+                <div>
+                  <span class="text-subtitle2">Marque - Modèle</span>
+                  <p>{{car.attributes.brand}} - {{car.attributes.model}}</p>
+                </div>
+                <div>
+                  <span class="text-subtitle2">Prix</span>
+                  <p>{{car.price}} €</p>
+                </div>
+                <div>
+                  <span class="text-subtitle2">Kilométrage</span>
+                  <p>{{car.attributes.mileage}} km</p>
+                </div>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card-section>
+        <q-separator/>
+      </q-card>
 
-    <q-card-actions align="between">
-      <q-btn flat @click="goToPrec()">Précédent</q-btn>
-      </q-card-actions>
-  </q-card>
+      <div class="row justify-center" style="margin-top: 15px; margin-bottom: 15px;">
+        <q-btn unelevated color="primary" @click="goToPrec()">Rechercher un autre modèle</q-btn>
+      </div>
+    </div>
 
-    <q-card v-if="etape=='fiche'" bordered >
+    <q-card v-if="etape=='fiche'" bordered>
       <q-card-section>
         <div class="text-h6">
           <i class="material-icons">
@@ -138,17 +165,17 @@
           Fiche voiture
         </div>
       </q-card-section>
-      <q-separator inset />
+      <q-separator inset/>
       <q-card-section>
 
         TODO fiche
 
       </q-card-section>
-      <q-separator inset />
+      <q-separator inset/>
 
       <q-card-actions align="between">
         <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
-        </q-card-actions>
+      </q-card-actions>
     </q-card>
 
 
@@ -160,35 +187,37 @@
   import axios from 'axios';
 
   export default {
-    name: 'Recherche voiture',
-    data(){
+    name: 'SearchNewCar',
+    data() {
       return {
         etape: "init",
         isSameCar: false,
-        prec:[],
+        prec: [],
         selectedCar: null,
         oldCarsResults: null,
+        nbResult: 0,
         results: null,
         form: {
-          minPrice:0,
-          maxPrice:0,
-          codePostal:null,
-          minKm:0,
-          maxKm:0,
-          searchText:null
+          minPrice: 0,
+          maxPrice: 0,
+          codePostal: null,
+          minKm: 0,
+          maxKm: 0,
+          searchText: null
         }
       }
     },
 
-    mounted(){
+    mounted() {
       axios.get('/api/old-car')
         .then((oldCar) => {
+          this.nbResult = oldCar.data.nbResult;
           this.oldCarsResults = oldCar.data.results;
           console.log('oldCar.results: ', oldCar.data.results);
         });
     },
 
-    methods : {
+    methods: {
       goTo(etape) {
         this.prec.push(this.etape);
         this.etape = etape;
@@ -196,23 +225,24 @@
 
       goToPrec() {
         if (this.isSameCar) {
-            this.isSameCar = false;
+          this.isSameCar = false;
         }
         this.etape = this.prec.pop();
       },
 
       sameCar() {
-          this.goTo("resultats");
-          this.isSameCar = true;
-          this.prec.push("recherche");
-          this.results = this.oldCarsResults;
+        this.goTo("resultats");
+        this.isSameCar = true;
+        this.prec.push("recherche");
+        this.results = this.oldCarsResults;
       },
 
       displayResults() {
+          console.log('displayResults');
         axios.get('/api/search')
           .then((cars) => {
             this.results = cars.data.results;
-            console.log('oldCar.results: ', cars.data.results);
+            console.log('cars.results: ', cars.data.results);
             this.goTo('resultats');
           });
       },
@@ -224,3 +254,8 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  p
+    margin-bottom 5px
+</style>
