@@ -99,7 +99,7 @@
         <q-btn flat v-on:click="goToPrec" icon="keyboard_arrow_left">
           Précédent
         </q-btn>
-        <q-btn flat class="bg-primary text-white" v-on:click="goTo('resultats')">Rechercher</q-btn>
+        <q-btn flat class="bg-primary text-white" v-on:click="displayResults()">Rechercher</q-btn>
       </div>
     </div>
 
