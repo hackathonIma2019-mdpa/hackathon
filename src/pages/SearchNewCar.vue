@@ -149,11 +149,8 @@
           </q-list>
         </q-card-section>
         <q-separator/>
-
-        <q-card-actions align="between">
-          <q-btn flat @click="goToPrec()">Précédent</q-btn>
-        </q-card-actions>
       </q-card>
+      <q-btn flat @click="goToPrec()">Précédent</q-btn>
     </div>
 
     <q-card v-if="etape=='fiche'" bordered>
