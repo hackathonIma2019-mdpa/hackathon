@@ -212,6 +212,8 @@
 </style>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'Mobility',
     data(){
@@ -250,6 +252,9 @@
     },
     methods : {
       goTo(etape) {
+        if(etape === 'end'){
+          axios.post('/api/societaires/1/datas/mobilite', this.form);
+        }
         this.prec.push(this.etape);
         this.etape= etape;
       },

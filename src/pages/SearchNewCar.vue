@@ -116,7 +116,7 @@
 
         <q-card-section>
           <q-list bordered separator>
-            <q-item v-for="(car, index) in results" :key="index">
+            <q-item v-for="(car, index) in results" :key="index" @click="openLeBonCoin(car)">
               <q-item-section>
                 <q-img
                   :src="car.images[0]"
@@ -144,7 +144,15 @@
                   <span class="text-subtitle2">Kilométrage</span>
                   <p>{{car.attributes.mileage}} km</p>
                 </div>
+                <div>
+                  <q-btn class="bg-primary text-white" @click="openLink(car)">Détails</q-btn>
+                </div>
               </q-item-section>
+              <q-btn class="pin" flat @click="pin(car)">
+                <q-icon size="2em" name="mdi-pin" v-bind:class="{'text-tertiary' : isPinned(car)}"/>
+                <q-tooltip>Epingler pour plus tard</q-tooltip>
+              </q-btn>
+
             </q-item>
           </q-list>
         </q-card-section>
@@ -156,28 +164,49 @@
       </div>
     </div>
 
-    <q-card v-if="etape=='fiche'" bordered>
-      <q-card-section>
-        <div class="text-h6">
-          <i class="material-icons">
-            directions_car
-          </i>
-          Fiche voiture
-        </div>
-      </q-card-section>
-      <q-separator inset/>
-      <q-card-section>
+    <q-card-section v-if="etape === 'init'" style="width:100%;">
+      <q-list bordered separator>
+        <q-item v-for="(car, index) in pinned" :key="index" @click="openLeBonCoin(car)">
+          <q-item-section>
+            <q-img
+              :src="car.images[0]"
+              style="height: 140px; max-width: 150px"
+              v-if="car && car.images && car.images.length> 0"
+            >
+              <template v-slot:loading>
+                <div class="text-tertiary">
+                  <q-spinner-ios/>
+                  <div class="q-mt-md">Loading...</div>
+                </div>
+              </template>
+            </q-img>
+          </q-item-section>
+          <q-item-section>
+            <div>
+              <span class="text-subtitle2">Marque - Modèle</span>
+              <p>{{car.attributes.brand}} - {{car.attributes.model}}</p>
+            </div>
+            <div>
+              <span class="text-subtitle2">Prix</span>
+              <p>{{car.price}} €</p>
+            </div>
+            <div>
+              <span class="text-subtitle2">Kilométrage</span>
+              <p>{{car.attributes.mileage}} km</p>
+            </div>
+            <div>
+              <q-btn class="bg-primary text-white" @click="openLink(car)">Détails</q-btn>
+            </div>
+          </q-item-section>
+          <q-btn class="pin" flat @click="pin(car)">
+            <q-icon size="2em" name="mdi-pin" v-bind:class="{'text-tertiary' : isPinned(car)}"/>
+            <q-tooltip>Epingler pour plus tard</q-tooltip>
+          </q-btn>
 
-        TODO fiche
-
-      </q-card-section>
-      <q-separator inset/>
-
-      <q-card-actions align="between">
-        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
-      </q-card-actions>
-    </q-card>
-
+        </q-item>
+      </q-list>
+    </q-card-section>
+    <q-separator/>
 
   </q-page>
 </template>
@@ -204,11 +233,15 @@
           minKm: 0,
           maxKm: 0,
           searchText: null
-        }
+        },
+        pinned: []
       }
     },
 
     mounted() {
+      axios.get('api/societaires/1/datas/cars/pinned').then((pinned) => this.pinned = pinned.data || []);
+
+      axios.post('/api/societaires/1/datas/want-to-change-car');
       axios.get('/api/old-car')
         .then((oldCar) => {
           this.nbResult = oldCar.data.nbResult;
@@ -238,19 +271,33 @@
 
       displayResults() {
         let keys = Object.keys(this.form);
-        axios.get('/api/search?'+ keys
+        axios.get('/api/search?' + keys
           .filter((key) => this.form[key])
-          .map((key) => key +'='+this.form[key]).join("&"))
+          .map((key) => key + '=' + this.form[key]).join("&"))
           .then((cars) => {
             this.results = cars.data.results;
             this.nbResult = cars.data.nbResult;
             this.goTo('resultats');
           });
       },
-
       displayDetail() {
         this.goTo('fiche');
       },
+      openLink(car) {
+        var win = window.open(car.link, '_blank');
+      },
+      pin(car) {
+        if (this.isPinned(car)) {
+          this.pinned = this.pinned.filter((pinned) => pinned.id !== car.id);
+          axios.delete('api/societaires/1/datas/cars/pinned/'+car.id);
+        } else {
+          this.pinned.push(car);
+          axios.post('api/societaires/1/datas/cars/pinned', this.pinned);
+        }
+      },
+      isPinned(car) {
+        return (this.pinned || []).some((aCar) => aCar.id === car.id);
+      }
 
     }
   }
@@ -259,4 +306,9 @@
 <style scoped lang="stylus">
   p
     margin-bottom 5px
+
+  button.pin
+    position absolute
+    top 0
+    right -17px
 </style>
