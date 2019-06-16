@@ -1,44 +1,38 @@
 <template>
-  <q-page class="column justify-start items-center q-pa-md">
+  <q-page class="column justify-start items-center">
     <div v-if="etape=='begin'">
       <h1 class="text-secondary text-center">Votre diagnostic mobilité</h1>
       <q-card bordered>
         <q-card-section>
-          Afin de vous proposer une solution personnalisée, faisons ensemble le point sur vos besoins de mobilité
-          pendant la durée d'imobilisation de votre véhicule
+          Votre assurance ne prends pas en charge de véhicule de prêt ? Pas de panique, nous allons étudier ensemble vos besoins pour trouver la meilleure solution pendant la durée d'imobilisation de votre véhicule
         </q-card-section>
         <q-separator/>
         <q-card-actions vertical>
-          <q-btn flat class="bg-primary text-white" v-on:click="goTo('besoins')">Commencer</q-btn>
+          <q-btn flat class="bg-primary text-white" v-on:click="next()">Commencer</q-btn>
         </q-card-actions>
       </q-card>
     </div>
 
-    <q-card v-if="etape=='besoins'" bordered>
-      <q-card-section class="bg-tertiary text-white">
-        <div class="text-h6">Avez-vous besoin d'un véhicule dans les prochains jours ?</div>
+    <q-card v-if="etape=='usage'" bordered >
+      <q-card-section>
+        <div class="text-h6">Quels types de déplacement devez vous faire ?</div>
       </q-card-section>
-      <q-separator inset/>
-      <q-card-actions vertical>
-        <q-btn-toggle
-          unelevated
-          v-model="form.besoin"
-          toggle-color="secondary"
-          :options="[
-          {label: 'Non', value: 'pasBesoin', slot: 'non'},
-          {label: 'Oui', value: 'besoin', slot: 'oui'},
-        ]"
-        >
-          <template v-slot:oui>
-            <q-tooltip>Oui</q-tooltip>
-          </template>
-
-          <template v-slot:non>
-            <q-tooltip>Non</q-tooltip>
-          </template>
-        </q-btn-toggle>
-      </q-card-actions>
-      <q-separator/>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-toggle
+          v-model="form.usages.quotidien"
+          @input="quotidien"
+          color="primary"
+          label="Trajets quotidiens (aller au travail, faire les courses, ...)"
+        />
+        <q-toggle
+          v-model="form.usages.exceptionnel"
+          @input="exceptionnel"
+          color="primary"
+          label="Trajets exceptionnels (partir en vacances, ...)"
+        />
+      </q-card-section>
+      <q-separator inset />
       <q-card-actions align="between">
           <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
           <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
@@ -317,9 +311,6 @@
       },
       usageOk() {
         return !(this.form.usages.exceptionnel || this.form.usages.quotidien);
-      },
-      autresOk() {
-        return !(this.form.autres=='pasAutres' || this.form.autresDetail.moto || this.form.autresDetail.scooter || this.form.autresDetail.trottinette|| this.form.autresDetail.velo|| this.form.autresDetail.voiture);
       },
     }
   }
