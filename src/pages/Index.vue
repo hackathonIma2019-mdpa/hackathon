@@ -43,3 +43,13 @@
 
   }
 </script>
+
+<style scoped lang="stylus">
+  .q-page
+    margin-top 0
+
+  h1
+    line-height 1.1em
+  h2
+    margin-bottom 0
+</style>
