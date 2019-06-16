@@ -106,20 +106,37 @@
 
     </q-card>
 
-
     <q-card v-if="etape=='resultats'" bordered >
-    <q-card-section>
-      <div class="text-h6">
-        <i class="material-icons">
-          format_list_bulleted
-        </i>
-        Résultats
-      </div>
-    </q-card-section>
-    <q-separator inset />
-    <q-card-section>
+      <q-card-section>
+        <div class="text-h6">
+          <i class="material-icons">
+            format_list_bulleted
+          </i>
+          Résultats
+        </div>
+      </q-card-section>
+      <q-separator inset />
 
-      {{oldCarsResults}}
+      <q-card-section v-for="oldCar in oldCarsResults">
+
+        <q-img
+          :src="oldCar.images[0]"
+          style="height: 140px; max-width: 150px"
+          v-if="oldCar && oldCar.images && oldCar.images.length> 0"
+        >
+          <template v-slot:loading>
+            <div class="text-yellow">
+              <q-spinner-ios />
+              <div class="q-mt-md">Loading...</div>
+            </div>
+          </template>
+        </q-img>
+
+
+        <div>{{oldCar.attributes.brand}} - {{oldCar.attributes.model}}</div>
+        <div>{{oldCar.price}} €</div>
+        <div>{{oldCar.attributes.mileage}} km</div>
+
 
     </q-card-section>
     <q-separator inset />
@@ -160,7 +177,7 @@
   import axios from 'axios';
 
   export default {
-    name: 'Recherche voiture',
+    name: 'SearchNewCar',
     data(){
       return {
         etape: "init",
