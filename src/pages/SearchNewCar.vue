@@ -245,6 +245,7 @@
           .map((key) => key +'='+this.form[key]).join("&"))
           .then((cars) => {
             this.results = cars.data.results;
+            this.nbResult = cars.data.nbResult;
             console.log('cars.results: ', cars.data.results);
             this.goTo('resultats');
           });
