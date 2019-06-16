@@ -1,44 +1,38 @@
 <template>
-  <q-page class="column justify-start items-center q-pa-md">
+  <q-page class="column justify-start items-center">
     <div v-if="etape=='begin'">
       <h1 class="text-secondary text-center">Votre diagnostic mobilité</h1>
       <q-card bordered>
         <q-card-section>
-          Afin de vous proposer une solution personnalisée, faisons ensemble le point sur vos besoins de mobilité
-          pendant la durée d'imobilisation de votre véhicule
+          Votre assurance ne prends pas en charge de véhicule de prêt ? Pas de panique, nous allons étudier ensemble vos besoins pour trouver la meilleure solution pendant la durée d'imobilisation de votre véhicule
         </q-card-section>
         <q-separator/>
         <q-card-actions vertical>
-          <q-btn flat class="bg-primary text-white" v-on:click="goTo('besoins')">Commencer</q-btn>
+          <q-btn flat class="bg-primary text-white" v-on:click="next()">Commencer</q-btn>
         </q-card-actions>
       </q-card>
     </div>
 
-    <q-card v-if="etape=='besoins'" bordered>
-      <q-card-section class="bg-tertiary text-white">
-        <div class="text-h6">Avez-vous besoin d'un véhicule dans les prochains jours ?</div>
+    <q-card v-if="etape=='usage'" bordered >
+      <q-card-section>
+        <div class="text-h6">Quels types de déplacement devez vous faire ?</div>
       </q-card-section>
-      <q-separator inset/>
-      <q-card-actions vertical>
-        <q-btn-toggle
-          unelevated
-          v-model="form.besoin"
-          toggle-color="secondary"
-          :options="[
-          {label: 'Non', value: 'pasBesoin', slot: 'non'},
-          {label: 'Oui', value: 'besoin', slot: 'oui'},
-        ]"
-        >
-          <template v-slot:oui>
-            <q-tooltip>Oui</q-tooltip>
-          </template>
-
-          <template v-slot:non>
-            <q-tooltip>Non</q-tooltip>
-          </template>
-        </q-btn-toggle>
-      </q-card-actions>
-      <q-separator/>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-toggle
+          v-model="form.usages.quotidien"
+          @input="quotidien"
+          color="primary"
+          label="Trajets quotidiens (aller au travail, faire les courses, ...)"
+        />
+        <q-toggle
+          v-model="form.usages.exceptionnel"
+          @input="exceptionnel"
+          color="primary"
+          label="Trajets exceptionnels (partir en vacances, ...)"
+        />
+      </q-card-section>
+      <q-separator inset />
       <q-card-actions align="between">
           <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
           <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
@@ -142,6 +136,60 @@
       </q-card-actions>
     </q-card>
 
+    <q-card v-if="etape=='complVoiture'" bordered >
+      <q-card-section>
+        <div class="text-h6">Seriez-vous interesser par du co-voiturage ?</div>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-btn-toggle
+          v-model="form.voiture"
+          push
+          toggle-color="primary"
+          :options="[
+          {label: 'Non', value: 'pasCovoit'},
+          {label: 'Oui', value: 'covoit'},
+        ]"
+        >
+        </q-btn-toggle>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-actions align="between">
+        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
+      </q-card-actions>
+    </q-card>
+
+
+    <q-card v-if="etape=='complCommun'" bordered >
+      <q-card-section>
+        <div class="text-h6">Quel type de transport en commun emprunterez-vous ?</div>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-toggle
+          v-model="form.commun.train"
+          color="primary"
+          label="Train"
+        />
+        <q-toggle
+          v-model="form.commun.bus"
+          color="primary"
+          label="Bus"
+        />
+        <q-toggle
+          v-model="form.commun.metro"
+          color="primary"
+          label="Métro"
+        />
+      </q-card-section>
+      <q-separator inset />
+      <q-card-actions align="between">
+        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
+      </q-card-actions>
+    </q-card>
+
 
 
     <q-card v-if="etape=='end'" bordered >
@@ -188,7 +236,13 @@
           contact: {
             type: null,
             date: null,
-          }
+          },
+          voiture : null,
+          commun: {
+            train : false,
+            bus: false,
+            metro: false,
+          },
         },
       }
     },
@@ -217,7 +271,11 @@
             this.goTo('moyenTransportExceptionnel');
           } else {
             if (this.form.moyenTransportQuotidien.alternatif.active) {
-              this.goTo('complAlternatif')
+              this.goTo('complAlternatif');
+            } else if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+              this.goTo('complVoiture');
+            } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+              this.goTo('complCommun');
             } else {
               this.goTo('end');
             }
@@ -225,11 +283,27 @@
         } else if (this.etape === 'moyenTransportExceptionnel') {
           if (this.form.moyenTransportQuotidien.alternatif.active) {
             this.goTo('complAlternatif')
+          } else if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+            this.goTo('complVoiture');
+          } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
           } else {
             this.goTo('end');
           }
         } else if (this.etape === 'complAlternatif') {
-          this.goTo('end')
+          if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+            this.goTo('complVoiture');
+          } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
+          } else {
+            this.goTo('end')
+          }
+        } else if (this.etape === 'complVoiture') {
+          if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
+          } else {
+            this.goTo('end')
+          }
         } else {
           this.goTo('end');
         }
@@ -237,9 +311,6 @@
       },
       usageOk() {
         return !(this.form.usages.exceptionnel || this.form.usages.quotidien);
-      },
-      autresOk() {
-        return !(this.form.autres=='pasAutres' || this.form.autresDetail.moto || this.form.autresDetail.scooter || this.form.autresDetail.trottinette|| this.form.autresDetail.velo|| this.form.autresDetail.voiture);
       },
     }
   }
