@@ -101,7 +101,7 @@
 
       <q-card-actions align="between">
         <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
-        <q-btn flat class="bg-primary text-white" v-on:click="goTo('resultats')">Rechercher</q-btn>
+        <q-btn flat class="bg-primary text-white" v-on:click="displayResults()">Rechercher</q-btn>
       </q-card-actions>
 
     </q-card>
@@ -117,12 +117,12 @@
       </q-card-section>
       <q-separator inset />
 
-      <q-card-section v-for="oldCar in oldCarsResults">
+      <q-card-section v-for="car in results">
 
         <q-img
-          :src="oldCar.images[0]"
+          :src="car.images[0]"
           style="height: 140px; max-width: 150px"
-          v-if="oldCar && oldCar.images && oldCar.images.length> 0"
+          v-if="car && car.images && car.images.length> 0"
         >
           <template v-slot:loading>
             <div class="text-yellow">
@@ -133,9 +133,10 @@
         </q-img>
 
 
-        <div>{{oldCar.attributes.brand}} - {{oldCar.attributes.model}}</div>
-        <div>{{oldCar.price}} €</div>
-        <div>{{oldCar.attributes.mileage}} km</div>
+        <div>{{car.attributes.brand}} - {{car.attributes.model}}</div>
+        <div>{{car.price}} €</div>
+        <div>{{car.attributes.mileage}} km</div>
+        {{car}}
 
 
     </q-card-section>
@@ -219,6 +220,7 @@
       },
 
       sameCar() {
+          console.log('sameCar()');
           this.goTo("resultats");
           this.isSameCar = true;
           this.prec.push("recherche");
@@ -226,10 +228,11 @@
       },
 
       displayResults() {
+          console.log('displayResults');
         axios.get('/api/search')
           .then((cars) => {
             this.results = cars.data.results;
-            console.log('oldCar.results: ', cars.data.results);
+            console.log('cars.results: ', cars.data.results);
             this.goTo('resultats');
           });
       },
