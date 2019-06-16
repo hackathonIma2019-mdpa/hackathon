@@ -18,6 +18,7 @@ class LeBonCoinService {
 }
 
   callSearch(req, res) {
+    LOGGER.debug(JSON.stringify(req.query));
     this.searchCustom(req.query).then(data => res.send(data))
       .catch(err => console.error(err));
   }
@@ -43,7 +44,7 @@ class LeBonCoinService {
     });
   }
 
-  searchCustom({minPrice=0, maxPrice=100000, codePostal, minKm=0, maxKm=500000, searchText}) {
+  searchCustom({minPrice, maxPrice, codePostal, minKm, maxKm, searchText}) {
 
     LOGGER.debug(minPrice,
     maxPrice,
@@ -63,13 +64,12 @@ class LeBonCoinService {
       search.setLocation([{"zipcode": codePostal}]);
     }
     if (minPrice || maxPrice) {
-     search.addSearchExtra("price", {min: minPrice, max: maxPrice});
+     search.addSearchExtra("price", {min: Number(minPrice) || 0, max: Number(maxPrice) || 100000});
     }
     if (minKm || maxKm) {
-      search.addSearchExtra("ranges", {mileage: {min: minKm, max: maxKm }});
+      search.addSearchExtra("ranges", {mileage: {min: Number(minKm) || 0, max: Number(maxKm) || 500000 }});
     }
     return search.run().then(data => {
-      LOGGER.debug(JSON.stringify(data));
       this.save(data);
       return data;
     });
