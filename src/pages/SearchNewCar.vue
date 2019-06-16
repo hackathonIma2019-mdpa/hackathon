@@ -116,12 +116,12 @@
 
         <q-card-section>
           <q-list bordered separator>
-            <q-item v-for="(oldCar, index) in oldCarsResults" :key="index">
+            <q-item v-for="(car, index) in results" :key="index">
               <q-item-section>
                 <q-img
-                  :src="oldCar.images[0]"
+                  :src="car.images[0]"
                   style="height: 140px; max-width: 150px"
-                  v-if="oldCar && oldCar.images && oldCar.images.length> 0"
+                  v-if="car && car.images && car.images.length> 0"
                 >
                   <template v-slot:loading>
                     <div class="text-tertiary">
@@ -134,15 +134,15 @@
               <q-item-section>
                 <div>
                   <span class="text-subtitle2">Marque - Modèle</span>
-                  <p>{{oldCar.attributes.brand}} - {{oldCar.attributes.model}}</p>
+                  <p>{{car.attributes.brand}} - {{car.attributes.model}}</p>
                 </div>
                 <div>
                   <span class="text-subtitle2">Prix</span>
-                  <p>{{oldCar.price}} €</p>
+                  <p>{{car.price}} €</p>
                 </div>
                 <div>
                   <span class="text-subtitle2">Kilométrage</span>
-                  <p>{{oldCar.attributes.mileage}} km</p>
+                  <p>{{car.attributes.mileage}} km</p>
                 </div>
               </q-item-section>
             </q-item>
