@@ -44,7 +44,7 @@
             <q-icon name="directions_car"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Changer votre voiture</q-item-label>
+            <q-item-label>Changer ma voiture</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" to="/mobility" exact>
