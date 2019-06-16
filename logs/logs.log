@@ -182,3 +182,59 @@
 {"level":"debug","message":"Service Test intialized","timestamp":"2019-06-16T00:55:15.395Z"}
 {"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-16T00:55:15.396Z"}
 {"level":"debug","message":"Societaire Service intialized","timestamp":"2019-06-16T00:55:15.396Z"}
+{"level":"debug","message":"DB path : /Users/christophegenin/monAssisteur/data.json","timestamp":"2019-06-16T01:17:36.272Z"}
+{"level":"debug","message":"DB : createIfNotExist : societaires","timestamp":"2019-06-16T01:17:37.165Z"}
+{"level":"debug","message":"DB : createIfNotExist : cars","timestamp":"2019-06-16T01:17:37.165Z"}
+{"level":"debug","message":"DB : createIfNotExist : test","timestamp":"2019-06-16T01:17:37.165Z"}
+{"level":"info","message":"db initialized","timestamp":"2019-06-16T01:17:37.166Z"}
+{"level":"debug","message":"Service Test intialized","timestamp":"2019-06-16T01:17:37.167Z"}
+{"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-16T01:17:37.168Z"}
+{"level":"debug","message":"Societaire Service intialized","timestamp":"2019-06-16T01:17:37.168Z"}
+{"level":"debug","message":"[]","timestamp":"2019-06-16T01:18:09.990Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:18:23.368Z"}
+{"level":"debug","message":"","timestamp":"2019-06-16T01:18:23.368Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:18:23.368Z"}
+{"level":"debug","message":"{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}}],\"meta\":{\"revision\":0,\"created\":1560647903379,\"version\":0},\"$loki\":1}","timestamp":"2019-06-16T01:18:23.380Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}}],\"meta\":{\"revision\":0,\"created\":1560647903379,\"version\":0},\"$loki\":1}]","timestamp":"2019-06-16T01:18:23.405Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}}],\"meta\":{\"revision\":0,\"created\":1560647903379,\"version\":0},\"$loki\":1}]","timestamp":"2019-06-16T01:19:07.208Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}}],\"meta\":{\"revision\":0,\"created\":1560647903379,\"version\":0},\"$loki\":1}]","timestamp":"2019-06-16T01:19:31.051Z"}
+{"level":"debug","message":"DB path : /Users/christophegenin/monAssisteur/data.json","timestamp":"2019-06-16T01:20:41.628Z"}
+{"level":"debug","message":"DB : createIfNotExist : societaires","timestamp":"2019-06-16T01:20:42.758Z"}
+{"level":"debug","message":"DB : createIfNotExist : cars","timestamp":"2019-06-16T01:20:42.759Z"}
+{"level":"debug","message":"DB : createIfNotExist : test","timestamp":"2019-06-16T01:20:42.759Z"}
+{"level":"info","message":"db initialized","timestamp":"2019-06-16T01:20:42.760Z"}
+{"level":"debug","message":"Service Test intialized","timestamp":"2019-06-16T01:20:42.764Z"}
+{"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-16T01:20:42.764Z"}
+{"level":"debug","message":"Societaire Service intialized","timestamp":"2019-06-16T01:20:42.766Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}}],\"meta\":{\"revision\":0,\"created\":1560647903379,\"version\":0},\"$loki\":1}]","timestamp":"2019-06-16T01:20:54.989Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:21:20.360Z"}
+{"level":"debug","message":"","timestamp":"2019-06-16T01:21:20.360Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:21:20.360Z"}
+{"level":"debug","message":"{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}},{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_a0e884ed72847a09be05e36db2b6f0ee\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:21:20.370Z\"}}],\"meta\":{\"revision\":1,\"created\":1560647903379,\"version\":0,\"updated\":1560648080372},\"$loki\":1}","timestamp":"2019-06-16T01:21:20.373Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}},{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_a0e884ed72847a09be05e36db2b6f0ee\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:21:20.370Z\"}}],\"meta\":{\"revision\":1,\"created\":1560647903379,\"version\":0,\"updated\":1560648080372},\"$loki\":1}]","timestamp":"2019-06-16T01:21:20.394Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_18a09b74ee740847c3b85b2811b3dd59\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:18:23.377Z\"}},{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_a0e884ed72847a09be05e36db2b6f0ee\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:21:20.370Z\"}}],\"meta\":{\"revision\":1,\"created\":1560647903379,\"version\":0,\"updated\":1560648080372},\"$loki\":1}]","timestamp":"2019-06-16T01:21:27.839Z"}
+{"level":"debug","message":"Creating data folder : /Users/christophegenin/monAssisteur","timestamp":"2019-06-16T01:25:17.503Z"}
+{"level":"debug","message":"Copying init database because none where found.","timestamp":"2019-06-16T01:25:17.507Z"}
+{"level":"debug","message":"DB path : /Users/christophegenin/monAssisteur/data.json","timestamp":"2019-06-16T01:25:17.510Z"}
+{"date":"Sun Jun 16 2019 03:25:18 GMT+0200 (Central European Summer Time)","process":{"pid":34095,"uid":501,"gid":20,"cwd":"/Users/christophegenin/hackathon/hackathon","execPath":"/usr/local/Cellar/node/11.6.0/bin/node","version":"v11.6.0","argv":["/usr/local/Cellar/node/11.6.0/bin/node","/Users/christophegenin/hackathon/hackathon/bin/www"],"memoryUsage":{"rss":52527104,"heapTotal":36499456,"heapUsed":18415680,"external":359141}},"os":{"loadavg":[2.33984375,2.18359375,2.19140625],"uptime":46784},"trace":[],"stack":["Error: ENOENT: no such file or directory, open '/Users/christophegenin/hackathon/hackathon/utils/db/data.init.json'"],"level":"error","message":"uncaughtException: ENOENT: no such file or directory, open '/Users/christophegenin/hackathon/hackathon/utils/db/data.init.json'","timestamp":"2019-06-16T01:25:18.344Z"}
+{"level":"debug","message":"DB : createIfNotExist : societaires","timestamp":"2019-06-16T01:25:18.349Z"}
+{"level":"debug","message":"DB : createIfNotExist : cars","timestamp":"2019-06-16T01:25:18.350Z"}
+{"level":"debug","message":"DB : createIfNotExist : test","timestamp":"2019-06-16T01:25:18.350Z"}
+{"level":"info","message":"db initialized","timestamp":"2019-06-16T01:25:18.350Z"}
+{"level":"debug","message":"Service Test intialized","timestamp":"2019-06-16T01:25:18.352Z"}
+{"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-16T01:25:18.353Z"}
+{"level":"debug","message":"Societaire Service intialized","timestamp":"2019-06-16T01:25:18.353Z"}
+{"level":"debug","message":"[]","timestamp":"2019-06-16T01:25:33.739Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:25:44.743Z"}
+{"level":"debug","message":"","timestamp":"2019-06-16T01:25:44.743Z"}
+{"level":"debug","message":"\n-----------","timestamp":"2019-06-16T01:25:44.743Z"}
+{"level":"debug","message":"{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_a6004d790c798b54c901d8328081bbe2\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:25:44.751Z\"}}],\"meta\":{\"revision\":0,\"created\":1560648344753,\"version\":0},\"$loki\":1}","timestamp":"2019-06-16T01:25:44.753Z"}
+{"level":"debug","message":"[{\"pictures\":[{\"distance.png\":{\"size\":43953,\"path\":\"/var/folders/nn/641c0_x11j7bv56c72tz_hjm0000gn/T/upload_a6004d790c798b54c901d8328081bbe2\",\"name\":\"distance.png\",\"type\":\"image/png\",\"mtime\":\"2019-06-16T01:25:44.751Z\"}}],\"meta\":{\"revision\":0,\"created\":1560648344753,\"version\":0},\"$loki\":1}]","timestamp":"2019-06-16T01:25:44.775Z"}
+{"level":"debug","message":"DB path : /Users/christophegenin/monAssisteur/data.json","timestamp":"2019-06-16T01:54:36.036Z"}
+{"level":"debug","message":"DB : createIfNotExist : societaires","timestamp":"2019-06-16T01:54:36.985Z"}
+{"level":"debug","message":"DB : createIfNotExist : cars","timestamp":"2019-06-16T01:54:36.986Z"}
+{"level":"debug","message":"DB : createIfNotExist : test","timestamp":"2019-06-16T01:54:36.986Z"}
+{"level":"info","message":"db initialized","timestamp":"2019-06-16T01:54:36.986Z"}
+{"level":"debug","message":"Service Test intialized","timestamp":"2019-06-16T01:54:36.988Z"}
+{"level":"debug","message":"CarDamageService intialized","timestamp":"2019-06-16T01:54:36.988Z"}
+{"level":"debug","message":"Societaire Service intialized","timestamp":"2019-06-16T01:54:36.989Z"}
