@@ -239,7 +239,10 @@
 
       displayResults() {
           console.log('displayResults');
-        axios.get('/api/search')
+        let keys = Object.keys(this.form);
+        axios.get('/api/search?'+ keys
+          .filter((key) => this.form[key])
+          .map((key) => key +'='+this.form[key]).join("&"))
           .then((cars) => {
             this.results = cars.data.results;
             console.log('cars.results: ', cars.data.results);
