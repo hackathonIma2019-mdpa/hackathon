@@ -4,7 +4,7 @@
     <h2 class="text-center">Votre dépanneur arrive. <br />Profitez utilement de votre attente ci-dessous.</h2>
     <div class="row justify-around">
       <q-btn to="/car-damage" unelevated  color="primary" class="q-btn--no-uppercase">
-        <q-icon size="3em" name="monetization_on"/>
+        <q-icon size="3em" name="mdi-car-limousine"/>
         <div>Estimer les dégats sur mon véhicule</div>
       </q-btn>
       <q-btn to="/search-car" unelevated color="secondary" class="q-btn--no-uppercase">
@@ -36,6 +36,10 @@
 
 <script>
   export default {
-    name: 'PageIndex'
+    name: 'PageIndex',
+    methods: {
+
+    }
+
   }
 </script>

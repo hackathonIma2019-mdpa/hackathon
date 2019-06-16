@@ -33,7 +33,7 @@
       <q-list>
         <q-item clickable tag="a" to="/car-damage" exact>
           <q-item-section avatar>
-            <q-icon name="monetization_on"/>
+            <q-icon name="mdi-car-limousine"/>
           </q-item-section>
           <q-item-section>
             <q-item-label>Estimer les dégats</q-item-label>
