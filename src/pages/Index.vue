@@ -9,7 +9,7 @@
       </q-btn>
       <q-btn to="/search-car" unelevated color="secondary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="directions_car"/>
-        <div>Changer votre voiture</div>
+        <div>Changer ma voiture</div>
       </q-btn>
       <q-btn to="/mobility" unelevated color="tertiary" class="q-btn--no-uppercase">
         <q-icon size="3em" name="directions_bike"/>

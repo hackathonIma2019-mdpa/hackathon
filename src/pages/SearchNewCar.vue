@@ -213,7 +213,6 @@
         .then((oldCar) => {
           this.nbResult = oldCar.data.nbResult;
           this.oldCarsResults = oldCar.data.results;
-          console.log('oldCar.results: ', oldCar.data.results);
         });
     },
 
@@ -238,7 +237,6 @@
       },
 
       displayResults() {
-          console.log('displayResults');
         let keys = Object.keys(this.form);
         axios.get('/api/search?'+ keys
           .filter((key) => this.form[key])
@@ -246,7 +244,6 @@
           .then((cars) => {
             this.results = cars.data.results;
             this.nbResult = cars.data.nbResult;
-            console.log('cars.results: ', cars.data.results);
             this.goTo('resultats');
           });
       },
