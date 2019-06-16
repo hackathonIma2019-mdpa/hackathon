@@ -138,6 +138,60 @@
       </q-card-actions>
     </q-card>
 
+    <q-card v-if="etape=='complVoiture'" bordered >
+      <q-card-section>
+        <div class="text-h6">Seriez-vous interesser par du co-voiturage ?</div>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-btn-toggle
+          v-model="form.voiture"
+          push
+          toggle-color="primary"
+          :options="[
+          {label: 'Non', value: 'pasCovoit'},
+          {label: 'Oui', value: 'covoit'},
+        ]"
+        >
+        </q-btn-toggle>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-actions align="between">
+        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
+      </q-card-actions>
+    </q-card>
+
+
+    <q-card v-if="etape=='complCommun'" bordered >
+      <q-card-section>
+        <div class="text-h6">Quel type de transport en commun emprunterez-vous ?</div>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-section vertical>
+        <q-toggle
+          v-model="form.commun.train"
+          color="primary"
+          label="Train"
+        />
+        <q-toggle
+          v-model="form.commun.bus"
+          color="primary"
+          label="Bus"
+        />
+        <q-toggle
+          v-model="form.commun.metro"
+          color="primary"
+          label="Métro"
+        />
+      </q-card-section>
+      <q-separator inset />
+      <q-card-actions align="between">
+        <q-btn flat v-on:click="goToPrec">Précédent</q-btn>
+        <q-btn flat class="bg-primary text-white" :disabled="usageOk()" v-on:click="next()">Continuer</q-btn>
+      </q-card-actions>
+    </q-card>
+
 
 
     <q-card v-if="etape=='end'" bordered >
@@ -184,7 +238,13 @@
           contact: {
             type: null,
             date: null,
-          }
+          },
+          voiture : null,
+          commun: {
+            train : false,
+            bus: false,
+            metro: false,
+          },
         },
       }
     },
@@ -213,7 +273,11 @@
             this.goTo('moyenTransportExceptionnel');
           } else {
             if (this.form.moyenTransportQuotidien.alternatif.active) {
-              this.goTo('complAlternatif')
+              this.goTo('complAlternatif');
+            } else if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+              this.goTo('complVoiture');
+            } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+              this.goTo('complCommun');
             } else {
               this.goTo('end');
             }
@@ -221,11 +285,27 @@
         } else if (this.etape === 'moyenTransportExceptionnel') {
           if (this.form.moyenTransportQuotidien.alternatif.active) {
             this.goTo('complAlternatif')
+          } else if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+            this.goTo('complVoiture');
+          } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
           } else {
             this.goTo('end');
           }
         } else if (this.etape === 'complAlternatif') {
-          this.goTo('end')
+          if (this.form.moyenTransportQuotidien.voiture.active || this.form.moyenTransportExceptionnel.voiture.active) {
+            this.goTo('complVoiture');
+          } else if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
+          } else {
+            this.goTo('end')
+          }
+        } else if (this.etape === 'complVoiture') {
+          if (this.form.moyenTransportQuotidien.commun.active || this.form.moyenTransportExceptionnel.commun.active) {
+            this.goTo('complCommun');
+          } else {
+            this.goTo('end')
+          }
         } else {
           this.goTo('end');
         }
