@@ -45,13 +45,6 @@ class LeBonCoinService {
   }
 
   searchCustom({minPrice, maxPrice, codePostal, minKm, maxKm, searchText}) {
-
-    LOGGER.debug(minPrice,
-    maxPrice,
-    codePostal,
-    minKm,
-    maxKm,
-    searchText);
     const search = new leboncoin.Search();
     search
       .setPage(1)
