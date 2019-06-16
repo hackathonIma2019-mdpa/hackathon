@@ -2,7 +2,7 @@
   "name": "untitled",
   "version": "0.0.0",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "IMA'ssister",
   "cordovaId": "org.cordova.quasar.app",
   "author": "cgenin <genin.christophe@gmail.com>",
   "private": true,
