@@ -82,14 +82,14 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container :class="{'c-timer-closed': depanneurArrived}">
       <router-view/>
-      <div class="c-depanneur">
+      <div v-if="!depanneurArrived" class="c-depanneur">
       </div>
-      <div class="c-depanneur-time">
+      <div v-if="!depanneurArrived" class="c-depanneur-time">
         {{ myTime(timeToDisplay) }}
       </div>
-      <q-linear-progress style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
+      <q-linear-progress v-if="!depanneurArrived" style="height: 15px" :value="progress" class="q-mt-md c-progress-depanner"/>
     </q-page-container>
   </q-layout>
 </template>
@@ -105,7 +105,8 @@
         progress: 0,
         timeToDepanne: 180,
         timeToDisplay: 180,
-        interval: null
+        interval: null,
+        depanneurArrived: false
       }
     },
     mounted() {
@@ -115,6 +116,8 @@
         this.timeToDisplay--;
         this.progress += 1 / this.timeToDepanne;
         if(this.progress >= 1) {
+          this.depanneurArrived = true;
+          this.$q.notify('Votre déppaneur est arrivé Victor');
           clearInterval(this.interval);
         }
       }, 1000);
@@ -142,6 +145,9 @@
 </script>
 
 <style scoped lang="stylus">
+  .c-timer-closed
+    transition all .3s linear
+    padding-top 10px !important
   .c-progress-depanner
     position fixed
     top 55px
