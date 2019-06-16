@@ -10,12 +10,13 @@
     </div>
 
     <div v-if="etape=='recherche'" style="width: 100%">
+      <h1 class="text-secondary text-center">Votre nouvelle voiture en quelques clics !</h1>
       <q-list bordered class="rounded-borders">
         <q-expansion-item
           expand-separator
           icon="search"
           label="Recherche"
-          class="bg-secondary text-white"
+          class="bg-primary text-white"
           expand-icon-class="text-white"
           default-opened
         >
@@ -102,45 +103,58 @@
       </div>
     </div>
 
-    <q-card v-if="etape=='resultats'" bordered >
-      <q-card-section>
-        <div class="text-h6">
-          <i class="material-icons">
-            format_list_bulleted
-          </i>
-          Résultats
-        </div>
-      </q-card-section>
-      <q-separator inset />
+    <div v-if="etape==='resultats'" style="width:100%;">
+      <h1 class="text-secondary text-center">Vos résultats</h1>
+      <q-card bordered>
+        <q-card-section class="bg-primary text-white">
+          <div class="text-h6" style="display: flex; align-items: center">
+            <q-icon size="1.3em" name="format_list_bulleted" style="margin-right: 15px;"></q-icon>
+            {{ nbResult }} Résultats
+          </div>
+        </q-card-section>
+        <q-separator/>
 
-      <q-card-section v-for="oldCar in oldCarsResults">
+        <q-card-section>
+          <q-list bordered separator>
+            <q-item v-for="(oldCar, index) in oldCarsResults" :key="index">
+              <q-item-section>
+                <q-img
+                  :src="oldCar.images[0]"
+                  style="height: 140px; max-width: 150px"
+                  v-if="oldCar && oldCar.images && oldCar.images.length> 0"
+                >
+                  <template v-slot:loading>
+                    <div class="text-tertiary">
+                      <q-spinner-ios/>
+                      <div class="q-mt-md">Loading...</div>
+                    </div>
+                  </template>
+                </q-img>
+              </q-item-section>
+              <q-item-section>
+                <div>
+                  <span class="text-subtitle2">Marque - Modèle</span>
+                  <p>{{oldCar.attributes.brand}} - {{oldCar.attributes.model}}</p>
+                </div>
+                <div>
+                  <span class="text-subtitle2">Prix</span>
+                  <p>{{oldCar.price}} €</p>
+                </div>
+                <div>
+                  <span class="text-subtitle2">Kilométrage</span>
+                  <p>{{oldCar.attributes.mileage}} km</p>
+                </div>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card-section>
+        <q-separator/>
 
-        <q-img
-          :src="oldCar.images[0]"
-          style="height: 140px; max-width: 150px"
-          v-if="oldCar && oldCar.images && oldCar.images.length> 0"
-        >
-          <template v-slot:loading>
-            <div class="text-yellow">
-              <q-spinner-ios />
-              <div class="q-mt-md">Loading...</div>
-            </div>
-          </template>
-        </q-img>
-
-
-        <div>{{oldCar.attributes.brand}} - {{oldCar.attributes.model}}</div>
-        <div>{{oldCar.price}} €</div>
-        <div>{{oldCar.attributes.mileage}} km</div>
-
-
-      </q-card-section>
-      <q-separator inset/>
-
-      <q-card-actions align="between">
-        <q-btn flat @click="goToPrec()">Précédent</q-btn>
-      </q-card-actions>
-    </q-card>
+        <q-card-actions align="between">
+          <q-btn flat @click="goToPrec()">Précédent</q-btn>
+        </q-card-actions>
+      </q-card>
+    </div>
 
     <q-card v-if="etape=='fiche'" bordered>
       <q-card-section>
@@ -181,6 +195,7 @@
         prec: [],
         selectedCar: null,
         oldCarsResults: null,
+        nbResult: 0,
         results: null,
         form: {
           minPrice: 0,
@@ -196,6 +211,7 @@
     mounted() {
       axios.get('/api/old-car')
         .then((oldCar) => {
+          this.nbResult = oldCar.data.nbResult;
           this.oldCarsResults = oldCar.data.results;
           console.log('oldCar.results: ', oldCar.data.results);
         });
@@ -237,3 +253,8 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  p
+    margin-bottom 5px
+</style>
